@@ -2,9 +2,9 @@
  * loads and decorates the simple-card block
  * @param {Element} block The simple-card block element
  *
- * Authored fields (one row each, in order): text, link, linkText, linkType.
- * The link may arrive as an <a> or as a plain-text URL, so we normalise it into
- * a proper button and never leak the raw URL into the card body.
+ * Authored fields (one row each, in order): text, buttonText, buttonLink, buttonStyle.
+ * Each field is kept as its own cell (no link/linkText collapsing), so the button label
+ * and URL are read independently and external URLs work reliably.
  */
 const STYLES = ['primary', 'secondary'];
 
@@ -19,7 +19,7 @@ export default function decorate(block) {
   const bodyCell = rows[0]?.querySelector(':scope > div') || rows[0];
   const bodyHtml = bodyCell ? bodyCell.innerHTML : '';
 
-  // Remaining rows describe the button: href, label, style (in any order / any may be missing).
+  // Remaining rows describe the button (label, url, style — any may be missing).
   let href = '';
   let label = '';
   let style = '';
@@ -34,8 +34,8 @@ export default function decorate(block) {
       label = label || anchor.textContent.trim();
     } else if (STYLES.includes(txt.toLowerCase())) {
       style = txt.toLowerCase();
-    } else if (!href && looksLikeUrl(txt)) {
-      href = txt;
+    } else if (looksLikeUrl(txt)) {
+      href = href || txt;
     } else if (txt) {
       label = label || txt;
     }
@@ -43,7 +43,7 @@ export default function decorate(block) {
 
   // Normalise.
   if (href && !/^(https?:\/\/|\/|mailto:|tel:)/i.test(href)) href = `https://${href}`;
-  if (!label) label = href;
+  if (!label) label = href.replace(/^https?:\/\//i, '').replace(/\/$/, '');
   if (!style) style = 'primary';
 
   block.innerHTML = `

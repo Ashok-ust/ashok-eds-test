@@ -28,19 +28,19 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "name": "link",
-          "label": "Button Link"
-        },
-        {
           "component": "text",
-          "name": "linkText",
+          "name": "buttonText",
           "label": "Button Text",
           "valueType": "string"
         },
         {
+          "component": "aem-content",
+          "name": "buttonLink",
+          "label": "Button Link"
+        },
+        {
           "component": "select",
-          "name": "linkType",
+          "name": "buttonStyle",
           "label": "Button Style",
           "valueType": "string",
           "options": [
