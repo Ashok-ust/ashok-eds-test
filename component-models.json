@@ -216,7 +216,7 @@
     ]
   },
   {
-    "id": "simplecard",
+    "id": "simple-card",
     "fields": [
       {
         "component": "richtext",

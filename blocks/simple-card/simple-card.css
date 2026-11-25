@@ -1,4 +1,4 @@
-.simplecard {
+.simple-card {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -10,32 +10,32 @@
   box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
 }
 
-.simplecard .simplecard-body {
+.simple-card .simple-card-body {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.simplecard .simplecard-body > :first-child {
+.simple-card .simple-card-body > :first-child {
   margin-top: 0;
 }
 
-.simplecard .simplecard-body > :last-child {
+.simple-card .simple-card-body > :last-child {
   margin-bottom: 0;
 }
 
-.simplecard .simplecard-actions {
+.simple-card .simple-card-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.simplecard .simplecard-actions .button {
+.simple-card .simple-card-actions .button {
   margin: 0;
 }
 
 @media (width >= 600px) {
-  .simplecard {
+  .simple-card {
     padding: 32px;
   }
 }
